@@ -5,30 +5,25 @@
 package com.mycompany.sistem_toko_komputer;
 
 public class PCDesktop extends Komputer {
-    private String kartuGrafis;
     private int dayaPSU;
 
-    public PCDesktop(String namaPerangkat, String processor, int ramGB, double harga, String kartuGrafis, int dayaPSU) {
-        super(namaPerangkat, processor, ramGB, harga);
-        this.kartuGrafis = kartuGrafis;
+    public PCDesktop(String nama, String processor, String kartuGrafis, int ram, int ssd, double harga, int dayaPSU) {
+        super(nama, processor, kartuGrafis, ram, ssd, harga);
         this.dayaPSU = dayaPSU;
     }
-
-    public String getKartuGrafis() { return this.kartuGrafis; }
-    public void setKartuGrafis(String kartuGrafis) { this.kartuGrafis = kartuGrafis; }
 
     public int getDayaPSU() { return this.dayaPSU; }
     public void setDayaPSU(int dayaPSU) { this.dayaPSU = dayaPSU; }
 
     @Override
     public void tampilkanInfo() {
-        System.out.print("[DESKTOP] ");
+        System.out.print("[Desktop] ");
         super.tampilkanInfo();
-        System.out.printf(" | GPU: %-15s | PSU: %d W%n", this.kartuGrafis, this.dayaPSU);
+        System.out.printf("          -> Spesifikasi Tambahan: Power Supply %d Watt%n", this.dayaPSU);
     }
-    
+
     @Override
-    public void spesifikasiLayanan() {
-        System.out.println("  -> Info Layanan: Gratis rakitan, kustomisasi airflow, dan garansi part distributor.");
+    public void caraPakai() {
+        System.out.println("          -> Info Pakai: PC Desktop wajib dicolok ke sumber listrik terus-menerus.");
     }
 }

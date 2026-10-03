@@ -5,46 +5,66 @@
 package com.mycompany.sistem_toko_komputer;
 
 public class Komputer {
-    private String namaPerangkat;
+    private String nama;
     private String processor;
-    private int ramGB;
+    private String kartuGrafis;
+    private int ram;
+    private int ssd;
     private double harga;
 
-    public static int totalKomputer = 0;
+    public static int totalKomputerBerhasilDibuat = 0;
 
-    public Komputer(String namaPerangkat, String processor, int ramGB, double harga) {
-        this.namaPerangkat = namaPerangkat;
+    public Komputer(String nama, String processor, String kartuGrafis, int ram, int ssd, double harga) {
+        this.nama = nama;
         this.processor = processor;
-        this.ramGB = ramGB;
-        setHarga(harga);
-        totalKomputer++;
+        this.kartuGrafis = kartuGrafis;
+        this.ram = ram;
+        this.ssd = ssd;
+        
+        if (harga > 0) {
+            this.harga = harga;
+        } else {
+            System.out.println("Harga tidak valid! Diset ke 0.");
+            this.harga = 0;
+        }
+        
+        totalKomputerBerhasilDibuat++;
     }
 
-    public String getNamaPerangkat() { return this.namaPerangkat; }
-    public void setNamaPerangkat(String namaPerangkat) { this.namaPerangkat = namaPerangkat; }
+    public String getNama() { return this.nama; }
+    public void setNama(String nama) { this.nama = nama; }
 
     public String getProcessor() { return this.processor; }
     public void setProcessor(String processor) { this.processor = processor; }
 
-    public int getRamGB() { return this.ramGB; }
-    public void setRamGB(int ramGB) { this.ramGB = ramGB; }
+    public String getKartuGrafis() { return this.kartuGrafis; }
+    public void setKartuGrafis(String kartuGrafis) { this.kartuGrafis = kartuGrafis; }
+
+    public int getRam() { return this.ram; }
+    public void setRam(int ram) { 
+        if(ram > 0) this.ram = ram; 
+    }
+
+    public int getSsd() { return this.ssd; }
+    public void setSsd(int ssd) { 
+        if(ssd > 0) this.ssd = ssd; 
+    }
 
     public double getHarga() { return this.harga; }
     public void setHarga(double harga) {
         if (harga > 0) {
             this.harga = harga;
         } else {
-            System.out.println("[Peringatan] Harga tidak valid! Diset ke Rp 1.000.000");
-            this.harga = 1000000;
+            System.out.println("Harga tidak valid!");
         }
     }
 
     public void tampilkanInfo() {
-        System.out.printf("Nama: %-18s | CPU: %-18s | RAM: %2d GB | Harga: Rp %,.0f", 
-                          this.namaPerangkat, this.processor, this.ramGB, this.harga);
+        System.out.printf("Nama: %-15s | CPU: %-18s | GPU: %-12s | RAM: %-2d GB | SSD: %-3d GB | Harga: Rp %,.0f%n",
+                          this.nama, this.processor, this.kartuGrafis, this.ram, this.ssd, this.harga);
     }
-    
-    public void spesifikasiLayanan() {
-        System.out.println("Layanan: Garansi standar toko 1 tahun.");
+
+    public void caraPakai() {
+        System.out.println("Komputer dinyalakan dengan menekan tombol power.");
     }
 }

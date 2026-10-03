@@ -5,25 +5,25 @@
 package com.mycompany.sistem_toko_komputer;
 
 public class Laptop extends Komputer {
-    private double ukuranLayar;
+    private int kapasitasBaterai;
 
-    public Laptop(String namaPerangkat, String processor, int ramGB, double harga, double ukuranLayar) {
-        super(namaPerangkat, processor, ramGB, harga);
-        this.ukuranLayar = ukuranLayar;
+    public Laptop(String nama, String processor, String kartuGrafis, int ram, int ssd, double harga, int kapasitasBaterai) {
+        super(nama, processor, kartuGrafis, ram, ssd, harga);
+        this.kapasitasBaterai = kapasitasBaterai;
     }
 
-    public double getUkuranLayar() { return this.ukuranLayar; }
-    public void setUkuranLayar(double ukuranLayar) { this.ukuranLayar = ukuranLayar; }
+    public int getKapasitasBaterai() { return this.kapasitasBaterai; }
+    public void setKapasitasBaterai(int kapasitasBaterai) { this.kapasitasBaterai = kapasitasBaterai; }
 
     @Override
     public void tampilkanInfo() {
-        System.out.print("[LAPTOP]  ");
+        System.out.print("[Laptop]  ");
         super.tampilkanInfo();
-        System.out.printf(" | Layar: %.1f Inci%n", this.ukuranLayar);
+        System.out.printf("          -> Spesifikasi Tambahan: Baterai %d mAh%n", this.kapasitasBaterai);
     }
-    
+
     @Override
-    public void spesifikasiLayanan() {
-        System.out.println("  -> Info Layanan: Garansi baterai 6 bulan & adaptor charger original.");
+    public void caraPakai() {
+        System.out.println("          -> Info Pakai: Laptop bisa digunakan tanpa dicolok listrik (portabel).");
     }
 }
