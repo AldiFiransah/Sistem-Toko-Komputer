@@ -116,7 +116,7 @@ public class Sistem_Toko_Komputer {
                             }
                             System.out.println("* Total Item Komputer: " + Komputer.totalKomputerBerhasilDibuat);
                         }
-                        System.out.print("Tekan Enter untuk melanjutkan...");
+                        System.out.print("Tekan Enter untuk kembali");
                         scanner.nextLine();
                     }
                     case 3 -> {
@@ -127,11 +127,11 @@ public class Sistem_Toko_Komputer {
                         
                         cariKomputerBerdasarkanHarga(angkaKunci, daftarKomputer, jumlahKomputer);
                         
-                        System.out.print("\nTekan Enter untuk melanjutkan...");
+                        System.out.print("\nTekan Enter untuk kembali");
                         scanner.nextLine();
                     }
                     case 4 -> {
-                        System.out.println("Terima kasih telah menggunakan Sistem Komputer!");
+                        System.out.println("keluar dari sistem");
                         isRunning = false;
                     }
                     default -> {
