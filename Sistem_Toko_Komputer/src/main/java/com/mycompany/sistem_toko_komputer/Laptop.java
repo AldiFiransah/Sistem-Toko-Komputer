@@ -24,6 +24,6 @@ public class Laptop extends Komputer {
 
     @Override
     public void caraPakai() {
-        System.out.println("          -> Info Pakai: Laptop bisa digunakan tanpa dicolok listrik (portabel).");
+        System.out.println("          -> Info Pakai: Computer yang pakai batrai");
     }
 }

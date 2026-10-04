@@ -65,6 +65,6 @@ public class Komputer {
     }
 
     public void caraPakai() {
-        System.out.println("Komputer dinyalakan dengan menekan tombol power.");
+        System.out.println("          -> Info Pakai: Komputer dinyalakan dengan menekan tombol power.");
     }
 }

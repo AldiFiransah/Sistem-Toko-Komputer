@@ -24,6 +24,6 @@ public class PCDesktop extends Komputer {
 
     @Override
     public void caraPakai() {
-        System.out.println("          -> Info Pakai: PC Desktop wajib dicolok ke sumber listrik terus-menerus.");
+        System.out.println("          -> Info Pakai: membutuhkan listrik");
     }
 }

@@ -8,7 +8,20 @@ import java.util.Scanner;
 
 public class Sistem_Toko_Komputer {
 
-    public static void cariKomputerBerdasarkanHarga(double harga, Komputer[] daftarKomputer, int jumlahKomputer) {
+    public static void cariKomputer(String nama, Komputer[] daftarKomputer, int jumlahKomputer) {
+        System.out.println("\n--- Hasil Pencarian (Berdasarkan Nama: " + nama + ") ---");
+        boolean ditemukan = false;
+        for (int i = 0; i < jumlahKomputer; i++) {
+            if (daftarKomputer[i].getNama().equalsIgnoreCase(nama)) {
+                System.out.print("- Ditemukan: ");
+                daftarKomputer[i].tampilkanInfo();
+                ditemukan = true;
+            }
+        }
+        if (!ditemukan) System.out.println("Komputer dengan nama tersebut tidak ditemukan.");
+    }
+
+    public static void cariKomputer(double harga, Komputer[] daftarKomputer, int jumlahKomputer) {
         System.out.println("\n--- Hasil Pencarian (Harga <= Rp " + String.format("%,.0f", harga) + ") ---");
         boolean ditemukan = false;
         for (int i = 0; i < jumlahKomputer; i++) {
@@ -21,9 +34,13 @@ public class Sistem_Toko_Komputer {
         if (!ditemukan) System.out.println("Tidak ada komputer di bawah atau sama dengan harga tersebut.");
     }
 
+    public static void simulasiUjiCoba(Komputer item) {
+        item.caraPakai();
+    }
+
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            Komputer[] daftarKomputer = new Komputer[10];
+            Komputer[] daftarKomputer = new Komputer[50];
             int jumlahKomputer = 0;
             boolean isRunning = true;
 
@@ -31,6 +48,9 @@ public class Sistem_Toko_Komputer {
             daftarKomputer[jumlahKomputer++] = new Laptop("Acer Swift", "Ryzen 5 Gen 7000", "Radeon", 8, 512, 9000000, 3500);
             daftarKomputer[jumlahKomputer++] = new PCDesktop("Model 1", "Core i5 Gen 12", "GTX 1650", 16, 512, 7500000, 500);
             daftarKomputer[jumlahKomputer++] = new PCDesktop("Model 2", "Core i9 Gen 14", "RTX 4090", 64, 2048, 45000000, 1000);
+            daftarKomputer[jumlahKomputer++] = new MiniPC("Intel NUC 13", "Core i7 Gen 13", "Iris Xe", 16, 1000, 12000000, 0.6);
+            daftarKomputer[jumlahKomputer++] = new MiniPC("Mac Mini M2", "Apple M2", "10-Core GPU", 8, 512, 11500000, 1.2);
+            daftarKomputer[jumlahKomputer++] = new MiniPC("Gigabyte Brix", "Ryzen 7", "Radeon RX", 16, 512, 8500000, 0.9);
 
             System.out.println("<================================================>");
             System.out.println("               <<Toko Komputer>>                  ");
@@ -40,7 +60,7 @@ public class Sistem_Toko_Komputer {
                 System.out.println("\nMenu Utama:");
                 System.out.println("1. Tambah Komputer");
                 System.out.println("2. Lihat Daftar Komputer");
-                System.out.println("3. Cari Komputer berdasarkan Harga");
+                System.out.println("3. Cari Komputer");
                 System.out.println("4. Keluar");
                 System.out.print("Pilih Menu: 1-4: ");
 
@@ -51,9 +71,10 @@ public class Sistem_Toko_Komputer {
                     case 1 -> {
                         if (jumlahKomputer < daftarKomputer.length) {
                             System.out.println("\n-- Pilih Jenis Komputer --");
-                            System.out.println("1. Laptop ");
+                            System.out.println("1. Laptop");
                             System.out.println("2. PC Desktop");
-                            System.out.print("Pilihan (1/2): ");
+                            System.out.println("3. Mini PC");
+                            System.out.print("Pilihan (1/2/3): ");
                             
                             int jenis = scanner.nextInt();
                             scanner.nextLine();
@@ -61,7 +82,9 @@ public class Sistem_Toko_Komputer {
                             if (jenis == 1) {
                                 System.out.print("Masukkan Merk/Nama Laptop: ");
                             } else if (jenis == 2) {
-                                System.out.print("Masukkan Nama Model PC : ");
+                                System.out.print("Masukkan Nama Model PC: ");
+                            } else if (jenis == 3) {
+                                System.out.print("Masukkan Nama/Merk Mini PC: ");
                             } else {
                                 System.out.println("Pilihan tidak valid.");
                                 break;
@@ -69,10 +92,10 @@ public class Sistem_Toko_Komputer {
                             
                             String namaBaru = scanner.nextLine();
                             
-                            System.out.print("Masukkan Processor dan generasinya : ");
+                            System.out.print("Masukkan Processor dan generasinya: ");
                             String cpuBaru = scanner.nextLine();
                             
-                            System.out.print("Masukkan Kartu Grafis : ");
+                            System.out.print("Masukkan Kartu Grafis: ");
                             String gpuBaru = scanner.nextLine();
                             
                             System.out.print("Masukkan RAM (GB): ");
@@ -90,11 +113,16 @@ public class Sistem_Toko_Komputer {
                                 int baterai = scanner.nextInt();
                                 scanner.nextLine();
                                 daftarKomputer[jumlahKomputer] = new Laptop(namaBaru, cpuBaru, gpuBaru, ramBaru, ssdBaru, hargaBaru, baterai);
-                            } else {
+                            } else if (jenis == 2) {
                                 System.out.print("Masukkan Daya PSU (Watt): ");
                                 int psu = scanner.nextInt();
                                 scanner.nextLine();
                                 daftarKomputer[jumlahKomputer] = new PCDesktop(namaBaru, cpuBaru, gpuBaru, ramBaru, ssdBaru, hargaBaru, psu);
+                            } else if (jenis == 3) {
+                                System.out.print("Masukkan Berat Casing (Kg): ");
+                                double berat = scanner.nextDouble();
+                                scanner.nextLine();
+                                daftarKomputer[jumlahKomputer] = new MiniPC(namaBaru, cpuBaru, gpuBaru, ramBaru, ssdBaru, hargaBaru, berat);
                             }
                             
                             jumlahKomputer++;
@@ -111,7 +139,7 @@ public class Sistem_Toko_Komputer {
                             for (int i = 0; i < jumlahKomputer; i++) {
                                 System.out.print((i + 1) + ". ");
                                 daftarKomputer[i].tampilkanInfo();
-                                daftarKomputer[i].caraPakai();
+                                simulasiUjiCoba(daftarKomputer[i]);
                                 System.out.println();
                             }
                             System.out.println("* Total Item Komputer: " + Komputer.totalKomputerBerhasilDibuat);
@@ -121,17 +149,31 @@ public class Sistem_Toko_Komputer {
                     }
                     case 3 -> {
                         System.out.println("\n--- Fitur Cari Komputer ---");
-                        System.out.print("Masukkan Maksimal Harga (Rp): ");
-                        double angkaKunci = scanner.nextDouble();
-                        scanner.nextLine();
+                        System.out.println("1. Cari berdasarkan Nama Teks: ");
+                        System.out.println("2. Cari berdasarkan Batas Harga Maksimal:");
+                        System.out.print("Pilih metode pencarian (1/2): ");
                         
-                        cariKomputerBerdasarkanHarga(angkaKunci, daftarKomputer, jumlahKomputer);
+                        int modeCari = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (modeCari == 1) {
+                            System.out.print("Masukkan Nama/Merk: ");
+                            String kataKunci = scanner.nextLine();
+                            cariKomputer(kataKunci, daftarKomputer, jumlahKomputer);
+                        } else if (modeCari == 2) {
+                            System.out.print("Masukkan Maksimal Harga (Rp): ");
+                            double angkaKunci = scanner.nextDouble();
+                            scanner.nextLine();
+                            cariKomputer(angkaKunci, daftarKomputer, jumlahKomputer);
+                        } else {
+                            System.out.println("Pilihan tidak valid.");
+                        }
                         
                         System.out.print("\nTekan Enter untuk kembali");
                         scanner.nextLine();
                     }
                     case 4 -> {
-                        System.out.println("keluar dari sistem");
+                        System.out.println("Keluar dari sistem...");
                         isRunning = false;
                     }
                     default -> {
