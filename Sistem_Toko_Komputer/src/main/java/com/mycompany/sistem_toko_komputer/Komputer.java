@@ -4,7 +4,7 @@
  */
 package com.mycompany.sistem_toko_komputer;
 
-public class Komputer {
+public abstract class Komputer {
     private String nama;
     private String processor;
     private String kartuGrafis;
@@ -67,4 +67,6 @@ public class Komputer {
     public void caraPakai() {
         System.out.println("          -> Info Pakai: Komputer dinyalakan dengan menekan tombol power.");
     }
+
+    public abstract void hitungBiayaLayanan();
 }

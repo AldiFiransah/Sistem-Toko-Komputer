@@ -59,8 +59,8 @@ public class Sistem_Toko_Komputer {
             while (isRunning) {
                 System.out.println("\nMenu Utama:");
                 System.out.println("1. Tambah Komputer");
-                System.out.println("2. Lihat Daftar Komputer");
-                System.out.println("3. Cari Komputer");
+                System.out.println("2. Lihat Daftar Komputer & Simulasi");
+                System.out.println("3. Cari Komputer ");
                 System.out.println("4. Keluar");
                 System.out.print("Pilih Menu: 1-4: ");
 
@@ -140,6 +140,19 @@ public class Sistem_Toko_Komputer {
                                 System.out.print((i + 1) + ". ");
                                 daftarKomputer[i].tampilkanInfo();
                                 simulasiUjiCoba(daftarKomputer[i]);
+                                
+                                daftarKomputer[i].hitungBiayaLayanan();
+                                
+                                if (daftarKomputer[i] instanceof DapatDiupgrade) {
+                                    DapatDiupgrade itemUpgrade = (DapatDiupgrade) daftarKomputer[i];
+                                    itemUpgrade.upgradeRAM(8);
+                                }
+                                
+                                if (daftarKomputer[i] instanceof DapatGaransi) {
+                                    DapatGaransi itemGaransi = (DapatGaransi) daftarKomputer[i];
+                                    itemGaransi.klaimGaransi();
+                                }
+                                
                                 System.out.println();
                             }
                             System.out.println("* Total Item Komputer: " + Komputer.totalKomputerBerhasilDibuat);
@@ -149,8 +162,8 @@ public class Sistem_Toko_Komputer {
                     }
                     case 3 -> {
                         System.out.println("\n--- Fitur Cari Komputer ---");
-                        System.out.println("1. Cari berdasarkan Nama Teks: ");
-                        System.out.println("2. Cari berdasarkan Batas Harga Maksimal:");
+                        System.out.println("1. Cari berdasarkan Nama ");
+                        System.out.println("2. Cari berdasarkan Batas Harga");
                         System.out.print("Pilih metode pencarian (1/2): ");
                         
                         int modeCari = scanner.nextInt();

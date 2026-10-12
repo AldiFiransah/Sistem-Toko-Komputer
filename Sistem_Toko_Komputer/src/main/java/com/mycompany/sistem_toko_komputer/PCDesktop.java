@@ -4,7 +4,7 @@
  */
 package com.mycompany.sistem_toko_komputer;
 
-public class PCDesktop extends Komputer {
+public class PCDesktop extends Komputer implements DapatDiupgrade {
     private int dayaPSU;
 
     public PCDesktop(String nama, String processor, String kartuGrafis, int ram, int ssd, double harga, int dayaPSU) {
@@ -24,6 +24,16 @@ public class PCDesktop extends Komputer {
 
     @Override
     public void caraPakai() {
-        System.out.println("          -> Info Pakai: membutuhkan listrik");
+        System.out.println("          -> Info Pakai: PC Desktop wajib dicolok ke sumber listrik terus-menerus.");
+    }
+
+    @Override
+    public void hitungBiayaLayanan() {
+        System.out.println("          -> Biaya Layanan Service: Rp 200.000 / kunjungan.");
+    }
+
+    @Override
+    public void upgradeRAM(int tambahanRAM) {
+        System.out.println("          -> [UPGRADE RAM] Berhasil memasang " + tambahanRAM + " GB RAM Long-DIMM pada Slot PC Desktop.");
     }
 }
